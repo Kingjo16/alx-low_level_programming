@@ -27,5 +27,5 @@
 			_putchar(str[l + 1]);
 		}
 	}
-	_putchar('\l');
+	_putchar('\n');
 }
