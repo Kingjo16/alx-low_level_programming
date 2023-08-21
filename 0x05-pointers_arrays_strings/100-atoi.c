@@ -1,7 +1,7 @@
 #include "main.h"
 
 /**
- * _atoi - it converts a string 
+ * _atoi - it converts a string
  * @s: showes te string to be cov]nverted
  * Return: shows int will be converted from the string
  */
