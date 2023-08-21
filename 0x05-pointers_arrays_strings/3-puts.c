@@ -1,4 +1,5 @@
 #include "main.h"
+
 /**
  * _puts - it prints a string inside the stdout
  * @str: it points(pointer) to which string to print
@@ -10,4 +11,5 @@
 		{
 			_putchar(str[k]);
 		}
+		_putchar('\n');
 }
