@@ -3,7 +3,7 @@
 /**
  * *_strcpy - this copies src string
  * @dest: this is a pointer to the buffer in which the copy string is
- * @src: this will string  
+ * @src: this will string
  * Return: the pointer will be back to the dest
  */
 		char *_strcpy(char *dest, char *src)

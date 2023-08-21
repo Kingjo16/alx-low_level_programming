@@ -22,7 +22,7 @@
 		}
 	} else if (zen % 2)
 	{
-		for (l = (zen - 1) / 2; l < zen - 1; n++)
+		for (l = (zen - 1) / 2; l < zen - 1; l++)
 		{
 			_putchar(str[l + 1]);
 		}
