@@ -1,13 +1,14 @@
 #include "main.h"
+
 /**
- * _strcat:this conects two strings
+ * _strcat - this conects two strings
  * @dest: the string to go to
  * @src: the string which will be added 
  * Return: this will return to the pointer
  */
 		char *_strcat(char *dest, char *src)
 {
-	int z, y;
+int z, y;
 
 	z = 0;
 	y = 0;
@@ -21,8 +22,6 @@
 		y++;
 		z++;
 	}
-
 	dest[z] = '\0';
-
 		return (dest);
 }
