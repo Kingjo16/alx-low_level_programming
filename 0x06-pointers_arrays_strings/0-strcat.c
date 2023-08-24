@@ -6,7 +6,7 @@
  * @src: the string which will be added 
  * Return: this will return to the pointer
  */
-		char *_strcat(char *dest, char *src)
+char *_strcat(char *dest, char *src)
 {
 int z, y;
 
@@ -22,6 +22,8 @@ int z, y;
 		y++;
 		z++;
 	}
+
 	dest[z] = '\0';
+
 		return (dest);
 }
