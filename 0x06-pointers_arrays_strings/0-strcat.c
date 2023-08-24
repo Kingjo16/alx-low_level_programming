@@ -13,7 +13,7 @@
 	y = 0;
 
 	while (dest[z] != '\0')
-		i++;
+		z++;
 
 	while (src[y] != '\0')
 	{
