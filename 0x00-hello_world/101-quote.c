@@ -2,10 +2,8 @@
 #include <unistd.h>
 
 /**
- * main - prints exactly "and that piece of art is useful"
- * - Dora Korpar, 2015-10-19",
- * followed by a new line, to the standard error.
- * Return: Always 0 (Success)
+ * main - startes from here and it prints the below
+ * Return: 0 Success
  */
 int main(void)
 {
