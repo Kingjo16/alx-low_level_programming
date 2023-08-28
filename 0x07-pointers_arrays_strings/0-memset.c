@@ -1,17 +1,18 @@
 #include "main.h"
 
 /**
- * *_memset - a constant byte memory files
+ * _memset - Fills the first n bytes of memory area pointed
+ * _memset: discription
  * @s: the memory
  * @b: char
  * @n: copy b
- * return: pointer
+ * Return: pointer
  */
 char *_memset(char *s, char b, unsigned int n)
 {
 	unsigned int k;
 
-	for (k=0; k < n; k++)
+	for (k = 0; k < n; k++)
 	{
 		s[k] = b;
 	}
