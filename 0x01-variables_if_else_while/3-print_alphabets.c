@@ -1,9 +1,8 @@
 #include <stdio.h>
 
 /**
- * main - prints the alphabet in lowercase, and then in uppercase,
- * followed by a new line
- * Return: Always 0 (Success)
+ * main - it prints both upper and lower case of the alphabet
+ * Return: 0 for success
  */
 int main(void)
 {

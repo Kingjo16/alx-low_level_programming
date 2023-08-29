@@ -3,21 +3,20 @@
 #include <stdio.h>
 
 /**
- * main - assigns a random number to int n everytime
- * it executes, and prints it
- * Return: Always 0 (Success)
+ * main - this assignes a randome number
+ * Return: Always 0 is sucess
  */
 int main(void)
 {
-	int n;
+	int k;
 
 	srand(time(0));
-	n = rand() - RAND_MAX / 2;
-	if (n > 0)
-		printf("%d is positive\n", n);
-	else if (n == 0)
-		printf("%d is zero\n", n);
-	else if (n < 0)
-		printf("%d is negative\n", n);
+	k = rand() - RAND_MAX / 2;
+	if (k > 0)
+		printf("%d is positive\n", k);
+	else if (k == 0)
+		printf("%d is zero\n", k);
+	else if (k < 0)
+		printf("%d is negative\n", k);
 	return (0);
 }
