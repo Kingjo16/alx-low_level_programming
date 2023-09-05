@@ -4,7 +4,7 @@
   *argstostr - Concatenates Arguments of the program
   *@ac: Argument Count
   *@av: Array pointer
-  *Return: ac =0 or av null will be NULL 
+  *Return: ac =0 or av null will be NULL
   */
 char *argstostr(int ac, char **av)
 {
