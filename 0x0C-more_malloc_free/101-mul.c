@@ -5,7 +5,7 @@
 /**
  * is_digit - checks fora non digit char
  * @s: to be Evaluated string
- * Return: 0 for non-digit and 1 otherwise
+ * Return: 0 for non digit and 1 otherwise
  */
 int is_digit(char *s)
 {
