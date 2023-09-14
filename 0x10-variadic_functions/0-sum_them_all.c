@@ -2,7 +2,7 @@
 
 /**
  * sum_them_all - Calculates the sum
- * @n; Number of Arguments which are passed to the function
+ * @n: Number of Arguments which are passed to the function
  * Return: The sum of the parameters.
  */
 int sum_them_all(const unsigned int n, ...)
