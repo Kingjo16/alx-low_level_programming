@@ -15,7 +15,7 @@ void print_all(const char * const format, ...)
 
 	if (format)
 	{
-		while (format[k)
+		while (format[k])
 		{
 			switch (format[k])
 			{
