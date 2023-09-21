@@ -3,7 +3,7 @@
 #include "lists.h"
 
 /**
- * add_node_end - Adds a new node at the 
+ * add_node_end - Adds a new node at the
  * End of a linked list
  * @head: double pointer to the list_t list
  * @str: string to put in the new node inside the list
