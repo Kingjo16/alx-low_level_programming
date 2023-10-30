@@ -1,22 +1,22 @@
 #include "kinglib.h"
 
-void elf_file(unsigned char *ident_e)
+void elf_file(unsigned char *e_ident)
 {
 	int m;
 
 	for (m = 0; m < 4; m++)
 	{
-		if (ident_e[m] != 127 &&
-			ident_e[m] != 'E' &&
-			ident_e[m] != 'L' &&
-			ident_e[m] != 'F')
+		if (e_ident[m] != 127 &&
+			e_ident[m] != 'E' &&
+			e_ident[m] != 'L' &&
+			e_ident[m] != 'F')
 		{
 			dprintf(STDERR_FILENO, "Error: Not an ELF file\n");
 			exit(98);
 		}
 	}
 }
-void magic_print(unsigned char *ident_e)
+void magic_print(unsigned char *e_ident)
 {
 	int m;
 
@@ -24,7 +24,7 @@ void magic_print(unsigned char *ident_e)
 
 	for (m = 0; m < EI_NIDENT; m++)
 	{
-		printf("%02x", ident_e[m]);
+		printf("%02x", e_ident[m]);
 
 		if (m == EI_NIDENT - 1)
 			printf("\n");
@@ -34,11 +34,11 @@ void magic_print(unsigned char *ident_e)
 }
 
 
-void elf_printer(unsigned char *ident_e)
+void elf_printer(unsigned char *e_ident)
 {
 	printf(" Class:				");
 
-	switch (ident_e[EI_CLASS])
+	switch (e_ident[EI_CLASS])
 	{
 		case ELFCLASSNONE:
 			printf("none\n");
@@ -51,15 +51,15 @@ void elf_printer(unsigned char *ident_e)
 			break;
 
 		default:
-			printf("<unknown: %x>\n", ident_e[EI_CLASS]);
+			printf("<unknown: %x>\n", e_ident[EI_CLASS]);
 	}
 }
 
-void data_print(unsigned char *ident_e)
+void data_print(unsigned char *e_ident)
 {
 	printf("  Data:                              ");
 
-	switch (ident_e[EI_DATA])
+	switch (e_ident[EI_DATA])
 	{
 	case ELFDATANONE:
 		printf("none\n");
@@ -71,16 +71,16 @@ void data_print(unsigned char *ident_e)
 		printf("2's complement, big endian\n");
 		break;
 	default:
-		printf("<unknown: %x>\n", ident_e[EI_CLASS]);
+		printf("<unknown: %x>\n", e_ident[EI_CLASS]);
 	}
 }
 
-void version_print(unsigned char *ident_e)
+void version_print(unsigned char *e_ident)
 {
 	printf("  Version:				%d",
-			ident_e[EI_VERSION]);
+			e_ident[EI_VERSION]);
 
-	switch (ident_e[EI_VERSION])
+	switch (e_ident[EI_VERSION])
 			{
 			case EV_CURRENT:
 			printf(" (current)\n");
@@ -90,11 +90,11 @@ void version_print(unsigned char *ident_e)
 			break;
 			}
 }
-void osabi_printer(unsigned char *ident_e)
+void osabi_printer(unsigned char *e_ident)
 {
 	printf(" OS/ABI:			");
 
-	switch (ident_e[EI_OSABI])
+	switch (e_ident[EI_OSABI])
 	{
 		case ELFOSABI_NONE:
 			printf("UNIX - system V\n");
@@ -127,7 +127,7 @@ void osabi_printer(unsigned char *ident_e)
 		printf("Standalone App\n");
 		break;
 		default:
-		printf("<unknown: %x\n", ident_e[EI_OSABI]);
+		printf("<unknown: %x\n", e_ident[EI_OSABI]);
 	}
 }
 
