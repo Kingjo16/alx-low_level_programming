@@ -1,10 +1,19 @@
 #include "kinglib.h"
 
+char *buffer_creator(char *list);
+void description_fileclose(int file_dis);
+
+/**
+ * buffer_creator - creats a buffer with a size of 1024.
+ * @list: buffer storing file in the char form.
+ * Return: return buf size.
+ */
+
 char *buffer_creator(char *list)
 {
 	char *buf;
 
-	buf = malloc(sizeof(char)* 1024);
+	buf = malloc(sizeof(char) * 1024);
 
 	if (buf == NULL)
 	{
@@ -15,6 +24,11 @@ char *buffer_creator(char *list)
 
 	return (buf);
 }
+
+/**
+ * description_fileclose - ends and close the the file description.
+ * @file_dis: file description which will be closed.
+ */
 
 void description_fileclose(int file_dis)
 {
@@ -27,6 +41,15 @@ void description_fileclose(int file_dis)
 		exit(100);
 	}
 }
+
+/**
+ * main - a function that copies content of one file to another.
+ * @aray: array pointer.
+ * @argu: Number of Arguments.
+ *
+ * Return: if succesful (0)
+ */
+
 
 int main(int argu, char *aray[])
 {
