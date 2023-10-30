@@ -11,11 +11,28 @@ void elf_file(unsigned char *ident_e)
 			ident_e[m] != 'L' &&
 			ident_e[m] != 'F')
 		{
-			dprintf(STDERR_FILENO,"Error: Not an ELF file\n");
+			dprintf(STDERR_FILENO, "Error: Not an ELF file\n");
 			exit(98);
 		}
 	}
 }
+void magic_print(unsigned char *ident_e)
+{
+	int m;
+
+	printf("  Magic:   ");
+
+	for (m = 0; m < EI_NIDENT; m++)
+	{
+		printf("%02x", ident_e[m]);
+
+		if (m == EI_NIDENT - 1)
+			printf("\n");
+		else
+			printf(" ");
+	}
+}
+
 
 void elf_printer(unsigned char *ident_e)
 {
@@ -32,9 +49,29 @@ void elf_printer(unsigned char *ident_e)
 		case ELFCLASSNONE:
 			printf("ELF64\n");
 			break;
-			
+
 			default;
 			printf("<unknown: %x>\n", ident_e[EI_CLASS]);
+	}
+}
+
+void data_print(unsigned char *ident_e)
+{
+	printf("  Data:                              ");
+
+	switch (ident_e[EI_DATA])
+	{
+	case ELFDATANONE:
+		printf("none\n");
+		break;
+	case ELFDATA2LSB:
+		printf("2's complement, little endian\n");
+		break;
+	case ELFDATA2MSB:
+		printf("2's complement, big endian\n");
+		break;
+	default:
+		printf("<unknown: %x>\n", ident_e[EI_CLASS]);
 	}
 }
 
@@ -94,6 +131,11 @@ void osabi_printer(unsigned char *ident_e)
 	}
 }
 
+void abi_print(unsigned char *ident_e)
+{
+	printf("  ABI Version:                       %d\n",
+	       ident_e[EI_ABIVERSION]);
+}
 
 void elfheader_print(unsigned int elftype, unsigned char *ident_e)
 {
@@ -124,4 +166,75 @@ void elfheader_print(unsigned int elftype, unsigned char *ident_e)
 	}
 }
 
+void entry_print(unsigned long int elfentry, unsigned char *ident_e)
+{
+	printf("  Entry point address:               ");
 
+
+		if (ident_e[EI_DATA] == ELFDATA2MSB)
+	{
+		elfentry = ((elfentry << 8) & 0xFF00FF00) |
+			  ((elfentry >> 8) & 0xFF00FF);
+		elfentry = (elfentry << 16) | (elfentry >> 16);
+	}
+
+	if (ident_e[EI_CLASS] == ELFCLASS32)
+		printf("%#x\n", (unsigned int)elfentry);
+
+	else
+		printf("%#lx\n", elfentry);
+}
+
+void elf_close(int elf)
+{
+
+	if (close(elf) == -1)
+	{
+		dprintf(STDERR_FILENO,
+			"Error: Can't close fd %d\n", elf);
+		exit(98);
+	}
+}
+
+int main(int __attribute__((__unused__)) argc, char *argv[])
+{
+	Elf64_Ehdr *list;
+	int file_dis, m;
+
+	file_dis = open(argv[1], O_RDONLY);
+	if (file_dis == -1)
+	{
+		dprintf(STDERR_FILENO, "Error: Can't read file %s\n", argv[1]);
+		exit(98);
+	}
+	list = malloc(sizeof(Elf64_Ehdr));
+	if (list == NULL)
+	{
+		elf_close(file_dis);
+		dprintf(STDERR_FILENO, "Error: Can't read file %s\n", argv[1]);
+		exit(98);
+	}
+	m = read(file_dis, list, sizeof(Elf64_Ehdr));
+	if (m == -1)
+	{
+		free(list);
+		elf_close(file_dis);
+		dprintf(STDERR_FILENO, "Error: `%s`: No such file\n", argv[1]);
+		exit(98);
+	}
+
+	elf_file(list->ident_e);
+	printf("ELF Header:\n");
+	magic_print(list->ident_e);
+	elf_printer(list->ident_e);
+	data_print(list->ident_e);
+	version_print(list->ident_e);
+	osabi_printer(list->ident_e);
+	abi_print(list->ident_e);
+	elfheader_print(list->elftype, list->ident_e);
+	entry_print(list->elfentry, list->ident_e);
+
+	free(list);
+	elf_close(file_dis);
+	return (0);
+}
