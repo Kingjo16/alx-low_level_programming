@@ -46,11 +46,11 @@ void elf_printer(unsigned char *ident_e)
 		case ELFCLASS32:
 			printf("ELF32\n");
 			break;
-		case ELFCLASSNONE:
+		case ELFCLASS64:
 			printf("ELF64\n");
 			break;
 
-			default;
+		default:
 			printf("<unknown: %x>\n", ident_e[EI_CLASS]);
 	}
 }
@@ -223,16 +223,16 @@ int main(int __attribute__((__unused__)) argc, char *argv[])
 		exit(98);
 	}
 
-	elf_file(list->ident_e);
+	elf_file(list->e_ident);
 	printf("ELF Header:\n");
-	magic_print(list->ident_e);
-	elf_printer(list->ident_e);
-	data_print(list->ident_e);
-	version_print(list->ident_e);
-	osabi_printer(list->ident_e);
-	abi_print(list->ident_e);
-	elfheader_print(list->elftype, list->ident_e);
-	entry_print(list->elfentry, list->ident_e);
+	magic_print(list->e_ident);
+	elf_printer(list->e_ident);
+	data_print(list->e_ident);
+	version_print(list->e_ident);
+	osabi_printer(list->e_ident);
+	abi_print(list->e_ident);
+	elfheader_print(list->e_type, list->e_ident);
+	entry_print(list->e_entry, list->e_ident);
 
 	free(list);
 	elf_close(file_dis);
