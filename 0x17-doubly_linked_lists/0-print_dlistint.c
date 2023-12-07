@@ -5,7 +5,7 @@
  * @h: the HEAD of the list elem
  * Return: The Num of the NODES
  */
-size_t print_dlistint(const dlistint_t *h);
+size_t print_dlistint(const dlistint_t *h)
 {
 	int numb;
 
