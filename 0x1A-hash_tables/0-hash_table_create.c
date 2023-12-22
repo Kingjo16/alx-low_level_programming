@@ -1,5 +1,11 @@
 #include "hash_tables.h"
 
+/**
+ * hash_table_create - Creates a hash table with the below prototyp
+ * @size: The Array SIZe
+ * Return: A pointer to the newly created hash table
+ */
+
 hash_table_t *hash_table_create(unsigned long int size)
 {
 	hash_table_t *h_table;
