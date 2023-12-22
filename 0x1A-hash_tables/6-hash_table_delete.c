@@ -16,7 +16,7 @@ void hash_table_delete(hash_table_t *ht)
 		if (ht->array[m] != NULL)
 		{
 			new_node = ht->array[m];
-			while (node != NULL)
+			while (new_node != NULL)
 			{
 				tempo = new_node->next;
 				free(new_node->key);
