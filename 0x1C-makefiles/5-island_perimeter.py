@@ -1,8 +1,9 @@
 #!/usr/bin/python3
+"""Define the island parameter measuring func."""
 
 
 def island_perimeter(grid):
-
+    """Island parameter whichich will defne a grid."""
     w = len(grid[0])
     h = len(grid)
     edge = 0
