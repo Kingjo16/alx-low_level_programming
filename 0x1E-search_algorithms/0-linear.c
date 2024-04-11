@@ -5,19 +5,19 @@
  * @array: FIrst elemnt in the array to SEARch.
  * @size: elemnts in the array.
  * @value: This is the value to search.
- * Return: If the value is not present or the array is NULL, -1.
+ * Return: The fisrst index where the value is located.
  */
 
 int linear_search(int *array, size_t size, int value)
 {
-	int ind;
+	size_t ind;
 
 	if (array == NULL)
 		return (-1);
 
-	for (ind = 0; ind < (int)size; ind++)
+	for (ind = 0; ind < size; ind++)
 	{
-		printf("Value checked array[%u] = [%d]\n", ind, array[ind]);
+		printf("Value checked array[%lu] = [%d]\n", ind, array[ind]);
 		if (array[ind] == value)
 			return (ind);
 	}
